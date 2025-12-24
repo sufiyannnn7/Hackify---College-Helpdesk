@@ -2,13 +2,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import type { ComplaintAnalysis, StudentDetails } from "../types";
 
-const API_KEY = process.env.API_KEY;
-
-if (!API_KEY) {
-  throw new Error("API_KEY environment variable not set");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+// FIX: Per coding guidelines, the API key must be obtained from process.env.API_KEY.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const analysisSchema = {
   type: Type.OBJECT,
@@ -84,7 +79,6 @@ export const analyzeComplaint = async (
       },
     });
 
-    // FIX: Safely access and trim the response text, handling cases where it might be undefined or empty.
     const jsonText = response.text?.trim();
     if (!jsonText) {
       throw new Error("Received an empty response from the AI.");
