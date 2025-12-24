@@ -1,0 +1,5 @@
+{
+  "name": "Hackify - College Helpdesk",
+  "description": "An intelligent helpdesk for colleges where students can submit complaints, and Gemini AI automatically categorizes, prioritizes, and assigns them to the correct department for administrative review.",
+  "requestFramePermissions": []
+}
