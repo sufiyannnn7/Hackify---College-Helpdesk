@@ -2,8 +2,13 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import type { ComplaintAnalysis, StudentDetails } from "../types";
 
-// FIX: Per coding guidelines, the API key must be obtained from process.env.API_KEY.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const API_KEY = process.env.API_KEY;
+
+if (!API_KEY) {
+  throw new Error("API_KEY environment variable not set. Please add it to your Netlify deployment environment variables.");
+}
+
+const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 const analysisSchema = {
   type: Type.OBJECT,
